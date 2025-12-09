@@ -55,3 +55,4 @@ app.*.map.json
 **/ios/Flutter/ephemeral/
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
+*.lock
