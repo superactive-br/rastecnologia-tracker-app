@@ -11,7 +11,7 @@ Rastec Tracker é o aplicativo móvel oficial Flutter da Rastec Tecnologia para 
 **Identificadores:**
 - Android Package: `rastec.Android`
 - iOS Bundle ID: `br.com.rastecnologia`
-- Deep Link Schemes: `rastec.android://` (Android), `br.com.rastecnologia://` (iOS)
+- Deep Link Scheme: `org.traccar.manager://` (ambas plataformas)
 
 **Principais Funcionalidades:**
 - Arquitetura baseada em WebView envolvendo interface web Traccar

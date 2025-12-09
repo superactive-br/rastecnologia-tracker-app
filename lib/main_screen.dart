@@ -54,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
     await _initialized.future;
     _appLinks = AppLinks();
     _appLinksSubscription = _appLinks.uriLinkStream.listen((uri) {
-      if (uri.scheme == 'rastec.android' || uri.scheme == 'br.com.rastecnologia') {
+      if (uri.scheme == 'org.traccar.manager') {
         final baseUri = Uri.parse(_getUrl());
         final updatedQueryParameters = Map<String, String>.from(uri.queryParameters)
           ..['redirect_uri'] = uri.toString().split('?').first;
@@ -75,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
     try {
       final originalRedirect = Uri.parse(uri.queryParameters['redirect_uri']!);
       final updatedRedirect = Uri(
-        scheme: Platform.isAndroid ? 'rastec.android' : 'br.com.rastecnologia',
+        scheme: 'org.traccar.manager',
         path: originalRedirect.path,
         queryParameters: originalRedirect.queryParameters.isEmpty ? null : originalRedirect.queryParameters,
       );
@@ -255,6 +255,12 @@ class _MainScreenState extends State<MainScreen> {
       }
     });
     await _messaging.requestPermission();
+
+    // Log FCM Token on init for debugging
+    final fcmToken = await _messaging.getToken();
+    print('═══════════════════════════════════════════');
+    print('🔔 FCM TOKEN: $fcmToken');
+    print('═══════════════════════════════════════════');
     await _authenticated.future.timeout(Duration(seconds: 30), onTimeout: () {});
     _messaging.onTokenRefresh.listen((newToken) {
       _controller.runJavaScript("updateNotificationToken?.('$newToken')");
@@ -277,6 +283,8 @@ class _MainScreenState extends State<MainScreen> {
         }
         final notificationToken = await _messaging.getToken();
         if (notificationToken != null) {
+          developer.log('🔔 FCM Token: $notificationToken');
+          print('🔔 FCM TOKEN: $notificationToken');
           _controller.runJavaScript("updateNotificationToken?.('$notificationToken')");
         }
       case 'authentication':
