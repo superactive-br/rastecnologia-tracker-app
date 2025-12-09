@@ -11,9 +11,9 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:traccar_manager/error_screen.dart';
-import 'package:traccar_manager/main.dart';
-import 'package:traccar_manager/token_store.dart';
+import 'package:rastec_tracker/error_screen.dart';
+import 'package:rastec_tracker/main.dart';
+import 'package:rastec_tracker/token_store.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
@@ -54,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
     await _initialized.future;
     _appLinks = AppLinks();
     _appLinksSubscription = _appLinks.uriLinkStream.listen((uri) {
-      if (uri.scheme == 'org.traccar.manager') {
+      if (uri.scheme == 'rastec.android' || uri.scheme == 'br.com.rastecnologia') {
         final baseUri = Uri.parse(_getUrl());
         final updatedQueryParameters = Map<String, String>.from(uri.queryParameters)
           ..['redirect_uri'] = uri.toString().split('?').first;
@@ -75,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
     try {
       final originalRedirect = Uri.parse(uri.queryParameters['redirect_uri']!);
       final updatedRedirect = Uri(
-        scheme: 'org.traccar.manager',
+        scheme: Platform.isAndroid ? 'rastec.android' : 'br.com.rastecnologia',
         path: originalRedirect.path,
         queryParameters: originalRedirect.queryParameters.isEmpty ? null : originalRedirect.queryParameters,
       );
@@ -94,7 +94,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   String _getUrl() {
-    return _preferences.getString(_urlKey) ?? 'https://demo.traccar.org';
+    return _preferences.getString(_urlKey) ?? 'https://tracker.rastecnologia.com.br';
   }
 
   bool _isDownloadable(Uri uri) {

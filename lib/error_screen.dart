@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:traccar_manager/main.dart';
+import 'package:rastec_tracker/main.dart';
 
 class ErrorScreen extends StatefulWidget {
   final String error;

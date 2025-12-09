@@ -1,22 +1,86 @@
-# [Traccar Manager app](https://www.traccar.org/manager)
+# Rastec Tracker
 
-[![Get it on Google Play](http://www.tananaev.com/badges/google-play.svg)](https://play.google.com/store/apps/details?id=org.traccar.manager) [![Download on the App Store](http://www.tananaev.com/badges/app-store.svg)](https://itunes.apple.com/app/traccar-manager/id1113966562)
+Aplicativo móvel oficial para rastreamento GPS com a plataforma Rastec Tecnologia.
 
-## Overview
+## Sobre
 
-Traccar Manager is the official mobile app for managing and monitoring your GPS tracking devices with the open-source Traccar platform.
+Rastec Tracker é um aplicativo Flutter para gerenciamento e monitoramento de dispositivos de rastreamento GPS. Oferece rastreamento em tempo real, gerenciamento de dispositivos, notificações de eventos e funcionalidades de histórico/relatórios.
 
-- **Live Tracking**: View the real-time location of all your devices on an interactive map.
-- **Device Management**: Add, edit, or remove devices directly from your mobile device.
-- **Event Notifications**: Receive alerts for geofence crossings, device status changes, and more.
-- **History and Reports**: Review past routes and generate trip history for any device.
-- **Secure and Private**: All your data stays on your own server—no third-party access.
+**Recursos principais:**
+- Rastreamento em tempo real
+- Gerenciamento de dispositivos
+- Notificações push de eventos
+- Histórico e relatórios (XLSX, KML, CSV, GPX)
+- Autenticação segura com biometria
+- Suporte a deep linking
 
-Connect the app to your Traccar Server, log in with your credentials, and instantly manage and monitor your fleet or personal devices from anywhere.
+## Plataformas
 
-## Team
+- Android 5.0+ (API 21+)
+- iOS 15.0+
 
-- Anton Tananaev ([anton@traccar.org](mailto:anton@traccar.org))
+## Servidor
+
+Este app se conecta ao servidor Traccar em:
+**https://tracker.rastecnologia.com.br**
+
+## Desenvolvimento
+
+### Pré-requisitos
+
+- Flutter SDK
+- Android Studio / Xcode
+- CocoaPods (iOS)
+- FlutterFire CLI
+
+### Configuração
+
+```bash
+# Instalar dependências
+flutter pub get
+
+# iOS: instalar pods
+cd ios && pod install && cd ..
+
+# Verificar ambiente
+flutter doctor -v
+```
+
+### Executar
+
+```bash
+# Android
+flutter run -d android
+
+# iOS (requer FlutterFire CLI no PATH)
+export PATH="$PATH:$HOME/.pub-cache/bin"
+flutter run -d ios
+```
+
+### Build
+
+```bash
+# Android APK
+flutter build apk --release
+
+# Android App Bundle (para Google Play)
+flutter build appbundle --release
+
+# iOS
+flutter build ios --release
+```
+
+## Atribuição
+
+Este projeto é baseado no [Traccar Manager](https://github.com/traccar/traccar-manager-flutter) de Anton Tananaev, licenciado sob Apache License 2.0.
+
+Modificações e rebranding por **Rastec Tecnologia**.
+
+## Contato
+
+**Rastec Tecnologia**
+Website: https://rastecnologia.com.br
+Suporte: tracker@rastecnologia.com.br
 
 ## License
 
