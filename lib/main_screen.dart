@@ -255,12 +255,6 @@ class _MainScreenState extends State<MainScreen> {
       }
     });
     await _messaging.requestPermission();
-
-    // Log FCM Token on init for debugging
-    final fcmToken = await _messaging.getToken();
-    print('═══════════════════════════════════════════');
-    print('🔔 FCM TOKEN: $fcmToken');
-    print('═══════════════════════════════════════════');
     await _authenticated.future.timeout(Duration(seconds: 30), onTimeout: () {});
     _messaging.onTokenRefresh.listen((newToken) {
       _controller.runJavaScript("updateNotificationToken?.('$newToken')");
@@ -283,8 +277,6 @@ class _MainScreenState extends State<MainScreen> {
         }
         final notificationToken = await _messaging.getToken();
         if (notificationToken != null) {
-          developer.log('🔔 FCM Token: $notificationToken');
-          print('🔔 FCM TOKEN: $notificationToken');
           _controller.runJavaScript("updateNotificationToken?.('$notificationToken')");
         }
       case 'authentication':

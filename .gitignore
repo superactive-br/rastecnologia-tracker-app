@@ -56,3 +56,12 @@ app.*.map.json
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 *.lock
+
+# Sensitive configuration files - DO NOT COMMIT
+**/google-services.json
+**/GoogleService-Info.plist
+**/key.properties
+*.jks
+*.keystore
+*.pem
+**/environment/
